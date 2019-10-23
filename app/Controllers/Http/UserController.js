@@ -35,6 +35,16 @@ class UserController {
         return response.json(res)
     }
 
+    async getUser({auth, response}){
+        const user = await auth.getUser()
+        const res = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email
+        }
+        return response.json(res)
+    }
+
 }
 
 module.exports = UserController
