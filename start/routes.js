@@ -24,9 +24,9 @@ Route.group(function(){
 
   Route.post('users/login', 'UserController.login')
   Route.post('users/register', 'UserController.register')
-  Route.get('users/getUser/:id', 'Usercontroller.show')
-  Route.get('users/getUser', 'Usercontroller.getUser').middleware('auth')
-  Route.get('users/test', 'Usercontroller.test')
+  Route.get('users/getUser/:id', 'UserController.show')
+  Route.get('users/getUser', 'UserController.getUser').middleware('auth')
+  Route.get('users/test', 'UserController.test')
 
   Route.get('device/index', 'DeviceController.index').middleware('auth')
   Route.post('device/create', 'DeviceController.create').middleware('auth')
