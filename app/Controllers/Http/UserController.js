@@ -10,7 +10,12 @@ class UserController {
 
     async getUser({ auth, response }){
         const user = await auth.getUser();
-        return response.json(user);
+        const usr = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email
+        }
+        return response.json(usr);
     }
 
     async register({ request }){
