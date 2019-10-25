@@ -8,10 +8,9 @@ class UserController {
         return response.send({message: 'Route test was a success'}) 
     }
 
-    async getUser({ auth }){
-        const user = await auth.getUser()
-        // 
-        return user
+    async getUser({ auth, response }){
+        const user = await auth.getUser();
+        return response.json(user);
     }
 
     async register({ request }){
