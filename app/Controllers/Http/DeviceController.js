@@ -2,6 +2,7 @@
 
 const Device = use('App/Models/Device')
 const authService =use('App/Services/AuthService')
+const Mqtt = use('Mqtt');
 
 class DeviceController {
 
@@ -42,15 +43,21 @@ class DeviceController {
         return device
     }
 
-    async updateStatus ({ auth, params, request}){
+    async updateStatus ({ auth, params, request, response}){
         const user = await auth.getUser()
         const { id } = params
         const device = await Device.find(id)
         authService.checkPermission(device.user_id, user.id)
         device.merge(request.only(['state', 'value']))
         await device.save()
-
-        return device
+        const dev = '{"id":' + device.id +','+
+                    '"user_id":' + device.user_id +','+
+                    '"name":"' + device.name +'",'+
+                    '"type":"' + device.type +'",'+
+                    '"state":"' + device.state +'",'+
+                    '"value":"' + device.value +'"}';            
+        await Mqtt.sendMessage('device/switch', dev, {qos: 1})
+        return response.json(dev)
     }
     
 

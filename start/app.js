@@ -11,6 +11,7 @@
 |
 */
 const providers = [
+  'adonis-mqtt/providers/MqttProvider',
   '@adonisjs/framework/providers/AppProvider',
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/bodyparser/providers/BodyParserProvider',
@@ -28,6 +29,7 @@ const providers = [
 |
 */
 const aceProviders = [
+  'adonis-mqtt/providers/CommandsProvider',
   '@adonisjs/lucid/providers/MigrationsProvider'
 ]
 
