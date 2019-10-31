@@ -31,10 +31,16 @@ class UserController {
     }
 
     async login({request, auth}){
-        const {email, password} = request.only(['email', 'password'])
+        const {email, password} = request.only(['email', 'password']);
         const token = await auth
                                 .withRefreshToken()
                                 .attempt(email, password);
+        return token;
+    }
+
+    async loginWithRefreshToken({ request, auth }){
+        const refreshToken = request.input('refresh_token')
+        const token = await auth.generateForRefreshToken(refreshToken)
         return token;
     }
 

@@ -23,6 +23,7 @@ Route.get('/', () => {
 Route.group(function(){
 
   Route.post('users/login', 'UserController.login')
+  Route.post('users/token', 'UserController.loginWithRefreshToken')
   Route.post('users/register', 'UserController.register')
   Route.get('users/getUser/:id', 'UserController.show')
   Route.get('users/getUser', 'UserController.getUser').middleware('auth')
