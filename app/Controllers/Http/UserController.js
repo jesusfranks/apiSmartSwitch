@@ -34,7 +34,7 @@ class UserController {
         const {email, password} = request.only(['email', 'password'])
         const token = await auth
                                 .withRefreshToken()
-                                .attempt(email, password)
+                                .attempt(email, password, '12345');
         return token;
     }
 
