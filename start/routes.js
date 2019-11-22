@@ -22,12 +22,11 @@ Route.get('/', () => {
 
 Route.group(function(){
 
+  Route.get('users/test', 'UserController.test')
   Route.post('users/login', 'UserController.login')
-  Route.post('users/token', 'UserController.loginWithRefreshToken')
   Route.post('users/register', 'UserController.register')
   Route.get('users/getUser/:id', 'UserController.show')
   Route.get('users/getUser', 'UserController.getUser').middleware('auth')
-  Route.get('users/test', 'UserController.test')
 
   Route.get('device/index', 'DeviceController.index').middleware('auth')
   Route.post('device/create', 'DeviceController.create').middleware('auth')

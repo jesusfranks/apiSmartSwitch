@@ -38,18 +38,12 @@ class UserController {
         return token;
     }
 
-    async loginWithRefreshToken({ request, auth }){
-        const refreshToken = request.input('refresh_token');
-        const token = await auth.generateForRefreshToken(refreshToken);
-        return token;
-    }
-
     async show({params, response}){
         const user = await User.find(params.id)
         const res = {
             first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email
+            last_name: user.last_name
+            // email: user.email
         }
         return response.json(res)
     }
