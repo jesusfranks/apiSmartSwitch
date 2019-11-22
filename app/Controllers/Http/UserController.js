@@ -39,8 +39,8 @@ class UserController {
     }
 
     async loginWithRefreshToken({ request, auth }){
-        const refreshToken = request.input('refresh_token')
-        const token = await auth.generateForRefreshToken(refreshToken)
+        const refreshToken = request.input('refresh_token');
+        const token = await auth.generateForRefreshToken(refreshToken);
         return token;
     }
 
